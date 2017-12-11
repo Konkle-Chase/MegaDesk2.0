@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaDesk-4-ChaseKonkle", "MegaDesk-4-ChaseKonkle\MegaDesk-4-ChaseKonkle.csproj", "{99C41EB6-BC55-4541-B7EC-E131CC63A92B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaDesk-4-ChaseKonkle", "MegaDesk-4-ChaseKonkle\MegaDesk-4-ChaseKonkle.csproj", "{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{99C41EB6-BC55-4541-B7EC-E131CC63A92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99C41EB6-BC55-4541-B7EC-E131CC63A92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99C41EB6-BC55-4541-B7EC-E131CC63A92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99C41EB6-BC55-4541-B7EC-E131CC63A92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {31763813-20FE-43E4-BD16-3EABE335419F}
+		SolutionGuid = {760DF5C0-C5FA-4D99-94A0-617CA7547D2C}
 	EndGlobalSection
 EndGlobal

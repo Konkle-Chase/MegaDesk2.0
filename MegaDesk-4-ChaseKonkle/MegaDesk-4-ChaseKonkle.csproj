@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99C41EB6-BC55-4541-B7EC-E131CC63A92B}</ProjectGuid>
+    <ProjectGuid>{5DA92BEF-DF77-4647-9777-AB6AAEED24CF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MegaDesk_4_ChaseKonkle</RootNamespace>
     <AssemblyName>MegaDesk-4-ChaseKonkle</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -45,14 +45,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AddQuote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddQuote.Designer.cs">
+      <DependentUpon>AddQuote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Desk.cs" />
+    <Compile Include="DeskOrder.cs" />
+    <Compile Include="DisplayOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayOrder.Designer.cs">
+      <DependentUpon>DisplayOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchQuotes.Designer.cs">
+      <DependentUpon>SearchQuotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAllQuotes.Designer.cs">
+      <DependentUpon>ViewAllQuotes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddQuote.resx">
+      <DependentUpon>AddQuote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayOrder.resx">
+      <DependentUpon>DisplayOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -61,7 +96,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SearchQuotes.resx">
+      <DependentUpon>SearchQuotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAllQuotes.resx">
+      <DependentUpon>ViewAllQuotes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,6 +116,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desk_pic.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desk_pic1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desk_pic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
