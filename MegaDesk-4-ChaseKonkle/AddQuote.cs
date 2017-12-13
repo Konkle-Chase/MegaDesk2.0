@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,8 +33,7 @@ namespace MegaDesk_4_ChaseKonkle
         string rushDays;
         bool rush = false;
         DateTime quoteDate;
-        object[] deskOrders;
-
+        
         #endregion
         //Initializes the AddQuotes form and gathers the necessary data.
         public AddQuote()
@@ -253,8 +254,7 @@ namespace MegaDesk_4_ChaseKonkle
                     //The Calculated price of the quote is inserted into the form. 
                     priceBox.Text = "$"+newOrder.quote.ToString() + ".00";
 
-                    //The array deskOrders is populated with the quote values.
-                    deskOrders = new object[] { newOrder.quoteDate, newOrder.lastName, newOrder.firstName, newDesk.width, newDesk.depth, newDesk.numDrawers, newDesk.surface, newOrder.rushDays, newOrder.quote };
+                    
                 }
             }
             catch (Exception)
@@ -267,8 +267,10 @@ namespace MegaDesk_4_ChaseKonkle
         //Sends the quote information to the DisplayQuote view for customer conformation. 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //Creates an instance of DeskOrderQuote
+            DeskOrderQuote newDeskQuote = new DeskOrderQuote(newDesk, newOrder);
             //Calls the RecordOrder() function.
-            RecordOrder();
+            RecordOrder(newDeskQuote);
               
             //Create instance of DisplayOrder displays the displayOrderForm and hides the addQuoteForm.
             DisplayOrder orderForm = new DisplayOrder(newDesk, newOrder);
@@ -277,11 +279,38 @@ namespace MegaDesk_4_ChaseKonkle
         }
 
         //Writes the submitted order to a text file.
-        private void RecordOrder()
+        private void RecordOrder(DeskOrderQuote newDeskQuote)
         {
             try
-            {                
+            {
                 //Create output JSON.
+                string jFile = @"quotes.json";
+                //Creates JSON file file if one hasn't been created yet. 
+                if (!File.Exists(jFile))
+                {
+                    using (StreamWriter sw = File.CreateText("quotes.json")){}
+                }               
+                //Creates a JSON object using the values of newDeskQuote 
+                var quoteArray = new JObject
+                {
+                    ["quoteDate"] = newDeskQuote.quoteDate.ToString(),
+                    ["lastName"] = newDeskQuote.lastName,
+                    ["firstName"] = newDeskQuote.firstName,
+                    ["width"] = newDeskQuote.width,
+                    ["depth"] = newDeskQuote.depth,
+                    ["numDrawers"] = newDeskQuote.numDrawers,
+                    ["surface"] = newDeskQuote.surface.ToString(),
+                    ["rushDays"] = newDeskQuote.rushDays,
+                    ["quote"] = newDeskQuote.quote
+                };
+
+                //Creates a serialized version of quoteArray.  
+                var convertedQuoteArray = JsonConvert.SerializeObject(quoteArray, Formatting.Indented);
+                //Writes convertedQuoteArray to the quotes.json file.
+                using (StreamWriter sw = File.AppendText("quotes.json"))
+                {
+                    sw.WriteLine(convertedQuoteArray);
+                }
 
                 //Store deskOrders into a text file.
                 string cFile = @"desk_orders.txt";
@@ -296,38 +325,18 @@ namespace MegaDesk_4_ChaseKonkle
                         sw.WriteLine("Mega Escritorio - Desk Orders");
                         sw.WriteLine("(Date and Time, Last Name, First Name, Width, Depth, Number of Drawers, Surface, Production Speed, Price)");
                         sw.WriteLine("========================================================================================================");
-                        //Iterates through deskOrders object array writing each value to the text file using csv format.
-                        for (int i = 0; i < 9; i++)
-                        {
-                            if (i == 8)
-                            {
-                                sw.WriteLine(deskOrders[i]);
-                            }
-                            else
-                            {
-                                sw.Write(deskOrders[i] + ", ");
-                            }
-                        }
+                        //Writes each value of newDeskQuote to the text file
+                        sw.WriteLine(newDeskQuote.quoteDate.ToString() + ", " + newDeskQuote.lastName + ", " + newDeskQuote.firstName + ", " + newDeskQuote.width + ", " + newDeskQuote.depth + ", " + newDeskQuote.numDrawers + ", " + newDeskQuote.surface + ", " + newDeskQuote.rushDays + ", " + newDeskQuote.quote);
                     }
                 }
                 //If the text file already exists the quote is just add.
                 else
                 {
-                    //Use StreamWriter to append the text file with write the new quote and closing the stream upon completion.
+                    //Use StreamWriter to append the text file write the new quote and closing the stream upon completion.
                     using (StreamWriter sw = File.AppendText("desk_orders.txt"))
                     {
-                        //Iterates through deskOrders object array writing each value to the text file using csv format.
-                        for (int i = 0; i < 9; i++)
-                        {
-                            if (i == 8)
-                            {
-                                sw.WriteLine(deskOrders[i]);
-                            }
-                            else
-                            {
-                                sw.Write(deskOrders[i] + ", ");
-                            }
-                        }
+                        //Writes each value of newDeskQuote to the text file
+                        sw.WriteLine(newDeskQuote.quoteDate.ToString() + ", " + newDeskQuote.lastName + ", " + newDeskQuote.firstName + ", " + newDeskQuote.width + ", " + newDeskQuote.depth + ", " + newDeskQuote.numDrawers + ", " + newDeskQuote.surface + ", " + newDeskQuote.rushDays + ", " + newDeskQuote.quote);
                     }
                 }
             }
