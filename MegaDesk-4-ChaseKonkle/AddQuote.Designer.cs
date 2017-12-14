@@ -331,6 +331,7 @@
             // 
             // quoteDatePicker
             // 
+            this.quoteDatePicker.Enabled = false;
             this.quoteDatePicker.Location = new System.Drawing.Point(130, 51);
             this.quoteDatePicker.Name = "quoteDatePicker";
             this.quoteDatePicker.Size = new System.Drawing.Size(200, 20);
